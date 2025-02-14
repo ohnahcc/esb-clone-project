@@ -1,5 +1,6 @@
 package com.example.esb_clone.service;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -10,12 +11,12 @@ import java.util.Map;
 public class WeatherService {
 
     private final RestTemplate restTemplate;
-
-    @Value("${weather.api.key}")
-    private String apiKey;
+    private final String apiKey;
 
     public WeatherService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+        Dotenv dotenv = Dotenv.load();
+        this.apiKey = dotenv.get("WEATHER_API_KEY"); // 환경 변수에서 API Key 읽기
     }
 
     // 1️⃣ 도시명으로 위도(lat), 경도(lon) 가져오기

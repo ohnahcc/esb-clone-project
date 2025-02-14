@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# 환경 설정 파일 Git에서 제외
+src/main/resources/application.properties
+src/main/resources/application.yml
+.env
+
